@@ -8,7 +8,7 @@ import Pithos.Base
 data Token
   = TokTruth
   | TokFalsity
-  | TokOp Connective
+  | TokOp Operation
   | TokLParen -- (
   | TokRParen -- )
   | TokVar String
