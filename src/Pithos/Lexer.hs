@@ -24,7 +24,7 @@ tokenize ""
   = []
 tokenize (' ':cs)
   = tokenize cs
-tokenize ('!':cs)
+tokenize ('~':cs)
   = TokNot : tokenize cs
 tokenize ('&':cs)
   = TokAnd : tokenize cs

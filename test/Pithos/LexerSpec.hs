@@ -11,7 +11,7 @@ spec
       it "should return [] on whitespace" $ do
         tokenize "   " `shouldBe` []
       it "should tokenize nots" $ do
-        tokenize "!a" `shouldBe` [TokNot, TokVar "a"]
+        tokenize "~a" `shouldBe` [TokNot, TokVar "a"]
       it "should tokenize conjuntions" $ do
         tokenize "a & b" `shouldBe` [TokVar "a", TokAnd, TokVar "b"]
       it "should tokenize disjunctions" $ do
