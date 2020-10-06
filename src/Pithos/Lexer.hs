@@ -3,12 +3,12 @@ module Pithos.Lexer
   , Token(..)
   ) where
 
+import Pithos.Base
+
 data Token
-  = TokNot
-  | TokAnd
-  | TokOr
-  | TokIf
-  | TokIff
+  = TokTruth
+  | TokFalsity
+  | TokOp Connective
   | TokLParen -- (
   | TokRParen -- )
   | TokVar String
@@ -24,16 +24,20 @@ tokenize ""
   = []
 tokenize (' ':cs)
   = tokenize cs
+tokenize ('T':cs)
+  = TokTruth : tokenize cs
+tokenize ('F':cs)
+  = TokFalsity : tokenize cs
 tokenize ('~':cs)
-  = TokNot : tokenize cs
+  = TokOp Not : tokenize cs
 tokenize ('&':cs)
-  = TokAnd : tokenize cs
+  = TokOp And : tokenize cs
 tokenize ('|':cs)
-  = TokOr : tokenize cs
+  = TokOp Or : tokenize cs
 tokenize ('-':'>':cs)
-  = TokIf : tokenize cs
+  = TokOp If : tokenize cs
 tokenize ('<':'-':'>':cs)
-  = TokIff : tokenize cs
+  = TokOp Iff : tokenize cs
 tokenize ('(':cs)
   = TokLParen : tokenize cs
 tokenize (')':cs)

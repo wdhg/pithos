@@ -3,12 +3,11 @@ module Pithos.Base where
 newtype Var
   = Var String
 
+data Connective
+  = Iff | If | Or | And | Not deriving (Show, Eq, Ord)
+
 data Formula
   = Atom Var
   | Truth
   | Falsity
-  | Not Formula
-  | And Formula Formula
-  | Or Formula Formula
-  | If Formula Formula
-  | Iff Formula Formula
+  | Op Connective [Formula]
