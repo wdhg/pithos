@@ -10,18 +10,16 @@ spec
         tokenize "" `shouldBe` []
       it "should return [] on whitespace" $ do
         tokenize "   " `shouldBe` []
+      it "should tokenize nots" $ do
+        tokenize "!a" `shouldBe` [TokNot, TokVar "a"]
       it "should tokenize conjuntions" $ do
-        tokenize "a & b" `shouldBe` [TokId "a", TokAnd, TokId "b"]
+        tokenize "a & b" `shouldBe` [TokVar "a", TokAnd, TokVar "b"]
       it "should tokenize disjunctions" $ do
-        tokenize "a | b" `shouldBe` [TokId "a", TokOr, TokId "b"]
+        tokenize "a | b" `shouldBe` [TokVar "a", TokOr, TokVar "b"]
       it "should tokenize implications" $ do
-        tokenize "a -> b" `shouldBe` [TokId "a", TokIf, TokId "b"]
+        tokenize "a -> b" `shouldBe` [TokVar "a", TokIf, TokVar "b"]
       it "should tokenize if and only if" $ do
-        tokenize "a <-> b" `shouldBe` [TokId "a", TokIff, TokId "b"]
-      it "should tokenize for all quantifier" $ do
-        tokenize "@cat [has_tail(cat)]" `shouldBe`
-          [TokForAll, TokId "cat", TokLBracket, TokId "has_tail", TokLParen
-          , TokId "cat", TokRParen, TokRBracket]
+        tokenize "a <-> b" `shouldBe` [TokVar "a", TokIff, TokVar "b"]
       it "should tokenize more complex identifiers" $ do
         tokenize "cat_eats_food <-> cat_is_alive" `shouldBe`
-          [TokId "cat_eats_food", TokIff, TokId "cat_is_alive"]
+          [TokVar "cat_eats_food", TokIff, TokVar "cat_is_alive"]

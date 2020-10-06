@@ -9,14 +9,9 @@ data Token
   | TokOr
   | TokIf
   | TokIff
-  | TokForAll
-  | TokExists
   | TokLParen -- (
   | TokRParen -- )
-  | TokLBracket -- [
-  | TokRBracket -- ]
-  | TokComma
-  | TokId String
+  | TokVar String
     deriving (Eq, Show)
 
 isIdentifier :: Char -> Bool
@@ -39,20 +34,10 @@ tokenize ('-':'>':cs)
   = TokIf : tokenize cs
 tokenize ('<':'-':'>':cs)
   = TokIff : tokenize cs
-tokenize ('@':cs)
-  = TokForAll : tokenize cs
-tokenize ('#':cs)
-  = TokExists : tokenize cs
 tokenize ('(':cs)
   = TokLParen : tokenize cs
 tokenize (')':cs)
   = TokRParen : tokenize cs
-tokenize ('[':cs)
-  = TokLBracket : tokenize cs
-tokenize (']':cs)
-  = TokRBracket : tokenize cs
-tokenize (',':cs)
-  = TokComma : tokenize cs
 tokenize cs
-  = let (word, cs') = span isIdentifier cs
-     in TokId word : tokenize cs'
+  = let (var, cs') = span isIdentifier cs
+     in TokVar var : tokenize cs'

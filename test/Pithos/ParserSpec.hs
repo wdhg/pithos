@@ -1,7 +1,10 @@
 module Pithos.ParserSpec where
 
+import Pithos.Parser
 import Test.Hspec
 
 spec :: Spec
 spec
-  = undefined
+  = describe "parse" $ do
+      it "should parse propositional atoms" $ do
+        pending
