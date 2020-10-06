@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Pithos
       Pithos.Base
   other-modules:
       Paths_pithos
