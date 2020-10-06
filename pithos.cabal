@@ -27,12 +27,15 @@ library
   exposed-modules:
       Pithos
       Pithos.Base
+      Pithos.Lexer
+      Pithos.Parser
   other-modules:
       Paths_pithos
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , hspec >=2.7 && <2.8
   default-language: Haskell2010
 
 executable pithos-exe
@@ -44,6 +47,7 @@ executable pithos-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , hspec >=2.7 && <2.8
     , pithos
   default-language: Haskell2010
 
@@ -51,11 +55,14 @@ test-suite pithos-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Pithos.LexerSpec
+      Pithos.ParserSpec
       Paths_pithos
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , hspec >=2.7 && <2.8
     , pithos
   default-language: Haskell2010
