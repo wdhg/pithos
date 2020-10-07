@@ -11,7 +11,7 @@ data Token
   | TokOp Operation
   | TokLParen -- (
   | TokRParen -- )
-  | TokVar String
+  | TokAtom String
     deriving (Eq, Show)
 
 isIdentifier :: Char -> Bool
@@ -44,4 +44,4 @@ tokenize (')':cs)
   = TokRParen : tokenize cs
 tokenize cs
   = let (var, cs') = span isIdentifier cs
-     in TokVar var : tokenize cs'
+     in TokAtom var : tokenize cs'
