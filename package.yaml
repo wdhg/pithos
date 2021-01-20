@@ -22,6 +22,7 @@ description:         Please see the README on GitHub at <https://github.com/wdhg
 dependencies:
 - base >= 4.7 && < 5
 - hspec >= 2.7 && < 2.8
+- attoparsec >= 0.13 && < 0.14
 
 library:
   source-dirs: src
@@ -36,6 +37,9 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - pithos
+    when:
+    - condition: false
+      other-modules: Paths_pithos
 
 tests:
   pithos-test:
@@ -47,3 +51,6 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - pithos
+    when:
+    - condition: false
+      other-modules: Paths_pithos
