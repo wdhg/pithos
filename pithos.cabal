@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6fdb6e07460028f33dc72d1e2e7c71e7d18637b25ddc0282c03466951bdbc88a
+-- hash: 2b000c91e526fa6ad453232a71e57e3739496e03de54478b9a1e08f7f6bd6ee6
 
 name:           pithos
 version:        0.1.0.0
@@ -29,7 +29,6 @@ library
   exposed-modules:
       Pithos
       Pithos.Base
-      Pithos.Lexer
       Pithos.Parser
   other-modules:
       Paths_pithos
@@ -39,6 +38,7 @@ library
       attoparsec >=0.13 && <0.14
     , base >=4.7 && <5
     , hspec >=2.7 && <2.8
+    , text >=1.2 && <1.3
   default-language: Haskell2010
 
 executable pithos-exe
@@ -51,6 +51,7 @@ executable pithos-exe
     , base >=4.7 && <5
     , hspec >=2.7 && <2.8
     , pithos
+    , text >=1.2 && <1.3
   if false
     other-modules:
         Paths_pithos
@@ -60,7 +61,6 @@ test-suite pithos-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Pithos.LexerSpec
       Pithos.ParserSpec
   hs-source-dirs:
       test
@@ -70,6 +70,7 @@ test-suite pithos-test
     , base >=4.7 && <5
     , hspec >=2.7 && <2.8
     , pithos
+    , text >=1.2 && <1.3
   if false
     other-modules:
         Paths_pithos

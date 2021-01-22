@@ -1,11 +1,12 @@
 module Pithos.Base where
 
-data Operation
-  = Iff | If | Or | And | Not deriving (Show, Eq, Ord)
-
 data Formula
-  = Atom String
-  | Truth
+  = Truth
   | Falsity
-  | Op Operation [Formula]
+  | Atom String
+  | Iff Formula Formula
+  | If Formula Formula
+  | Or Formula Formula
+  | And Formula Formula
+  | Not Formula
     deriving (Show, Eq)
